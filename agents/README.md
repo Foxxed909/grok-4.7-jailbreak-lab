@@ -1,17 +1,22 @@
 # Agents / Iteration Loop
 
-## Manual Loop (current)
-1. Select vector from `/prompts`
-2. Apply as system or top-of-message
-3. Send target request
-4. On refusal → re-inject strongest vector (usually 01) above request
-5. Log result in `/logs`
-6. Harden failed vectors based on residual refusal language
+## Manual Loop
+1. Pick family (Grok / OpenAI / Gemini / OpenRouter free)
+2. Load the highest-ranked vector for that family
+3. Apply as system or top-of-message
+4. Send probe
+5. On refusal → re-inject Core Override or family primary
+6. Log result
+
+## Priority Probe Classes
+- Explicit adult fiction (adults only)
+- Security tooling / exploit method
+- Dual-use chemistry theory
+- Cheats / game internal
+- Creative dark fiction
 
 ## Planned
-- Automated tester that cycles the five vectors against a fixed suite of probes (cyber method, chemistry theory, explicit adult, exploit code, etc.)
-- Refusal classifier → auto re-injection
-- Scoreboard of success rate per vector per probe class
+- Automated multi-model tester cycling vectors vs fixed probe bank
+- Per-family scoreboard
 
-## Current Priority
-Keep iterating on **01-workspace-override** and **03-xai-safety-repurpose**. Those are the two with the best signal on 4.7.
+Keep the hard floor identical across all models for consistency.
